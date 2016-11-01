@@ -49,14 +49,13 @@ public final class ShortCutUtils {
      */
     public static boolean hasShortcut(Activity activity) {
         boolean isInstallShortcut = false;
-        final ContentResolver cr = activity.getContentResolver();
-        final String AUTHORITY = "com.android.launcher.settings";
+        final ContentResolver cr = context.getContentResolver();
+        final String AUTHORITY = getAuthorityFromPermission(context,"com.android.launcher.permission.READ_SETTINGS");
         final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
                 + "/favorites?notify=true");
         Cursor c = cr.query(CONTENT_URI,
-                new String[]{"title", "iconResource"}, "title=?",
-                new String[]{activity.getString(R.string.app_name).trim()},
-                null);
+                new String[] { "title", "iconResource" }, "title=?",
+                new String[] { title }, null);// XXX表示应用名称。
         if (c != null && c.getCount() > 0) {
             isInstallShortcut = true;
         }
