@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 public final class Logger {
 
-  private static final String TAG = "Phoenix";
+  private static final String TAG = "yuge";
 
   /**
    * Set true or false if you want read logs or not
